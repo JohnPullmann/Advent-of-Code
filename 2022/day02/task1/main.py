@@ -14,7 +14,7 @@ def load_input() -> list[str]:
 
 
 def get_max_cal(inp: list = []) -> int:
-    # sum calories for each elf and return sum of first three elfs
+    # sum calories for each elf and find elf with most calories
     elfs_cal = []
     elf_cal = 0
     for line in inp:
@@ -29,11 +29,7 @@ def get_max_cal(inp: list = []) -> int:
                 return -1
 
     if elfs_cal != []:
-        elfs_cal.sort(reverse=True)
-        if len(elfs_cal) > 3:
-            return sum([elfs_cal[0],elfs_cal[1],elfs_cal[2]])
-        else:
-            return sum(elfs_cal)
+        return max(elfs_cal)
     else:
         print("Input is empty!")
         return -1
