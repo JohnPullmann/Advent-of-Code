@@ -13,30 +13,22 @@ def load_input() -> list[str]:
     return inp
 
 
-def get_max_cal(inp: list = []) -> int:
-    # sum calories for each elf and find elf with most calories
-    elfs_cal = []
-    elf_cal = 0
-    for line in inp:
-        if line == '':
-            elfs_cal.append(elf_cal)
-            elf_cal = 0
-        else:
-            try:
-                elf_cal += int(line)
-            except ValueError:
-                print("Invalid input!")
-                return -1
+def matches_to_scores(inp: list = [str]) -> list[int]:
+    scores = []
+    for match in inp:
+        pl1, pl2 = match.split(" ")
+        cases = {"AX":4,"AY":8,"AZ":3,
+                 "BX":1,"BY":5,"BZ":9,
+                 "CX":7,"CY":2,"CZ":6,
+        }
 
-    if elfs_cal != []:
-        return max(elfs_cal)
-    else:
-        print("Input is empty!")
-        return -1
+        scores.append(cases[pl1+pl2])
+    return scores
 
 
 if __name__ == "__main__":
     inp = load_input()
     if inp != -1:
-        result = get_max_cal(inp)
+        scores = matches_to_scores(inp)
+        result = sum(scores)
     print(result)
