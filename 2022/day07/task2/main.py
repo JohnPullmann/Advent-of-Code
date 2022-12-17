@@ -19,25 +19,25 @@ class dir:
         self.name = name
         self.parent = parent
         self.content = {}
-        self.__dirs_under_100KB = []
+        self.__dirs_to_delete = []
 
     @property
     def size(self):
         return sum([x.size for x in self.content.values()])
 
     @property
-    def dirs_under_100KB(self):
+    def dirs_to_delete(self):
         self.size
 
-        # find dirs under 100KB
-        self.__dirs_under_100KB = []
+        # find potential dirs to delete
+        self.__dirs_to_delete = []
         for d in self.content.values():
             if isinstance(d, dir):
-                self.__dirs_under_100KB.extend(d.dirs_under_100KB)  
-                if d.size < 100000:
-                    self.__dirs_under_100KB.append(d)
+                self.__dirs_to_delete.append(d)
+                self.__dirs_to_delete.extend(d.dirs_to_delete)  
+                    
 
-        return list(set(self.__dirs_under_100KB))
+        return list(set(self.__dirs_to_delete))
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.name}, {self.size})"
@@ -47,7 +47,7 @@ class file:
     def __init__(self, name, size):
         self.name = name
         self.size = size
-
+    
     def __repr__(self):
         return f"{self.__class__.__name__}({self.name}, {self.size})"
 
@@ -96,7 +96,14 @@ def no_space_left_on_device(inp: list = [str]) -> int:
                 else:
                     current_dir = commands.move_to_folder(current_dir, arguments[0])
 
-    return sum([x.size for x in root.dirs_under_100KB])
+    free_space = (70000000-root.size)
+    needed_space = 30000000 - free_space
+    dirs_enough = []
+    for d in root.dirs_to_delete:
+        if d.size > needed_space:
+            dirs_enough.append(d.size)
+
+    return min(dirs_enough)
 
 
 
