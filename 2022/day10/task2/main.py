@@ -14,7 +14,7 @@ def load_input() -> list[str]:
     return inp
 
 
-def cathode_ray_tube(inp: list = [str]) -> int:
+def cathode_ray_tube(inp: list = [str]):
     """You get list of executed instructions, 'noop' instruction just takes one cycle and does nothing,
     'addx' takes two cycles and changes register, signal strength is cycle * register,
     you need to return sum of signal strengths at cycles - 20, 60, ...
@@ -28,6 +28,13 @@ def cathode_ray_tube(inp: list = [str]) -> int:
         def cycle(self):
             self.cycle_n += 1
             self.memory[self.cycle_n] = self.X
+
+            if self.cycle_n%40-1 in [self.X-1, self.X, self.X+1]:
+                print('#', end='')
+            else:
+                print('.', end='')
+            if self.cycle_n%40 == 0:
+                print('\n', end='')
         
         def addx(self, x: int):
             self.cycle()
@@ -35,6 +42,7 @@ def cathode_ray_tube(inp: list = [str]) -> int:
             self.X += x
         
         def test(self, c: int) -> int:
+            print(f"{self.memory[c]*c} - {c}: {self.memory[c]}")
             return self.memory[c]*c
 
 
@@ -50,12 +58,10 @@ def cathode_ray_tube(inp: list = [str]) -> int:
         elif command == "addx":
             arg = int(args[0])
             cpu.addx(arg)
-
-    return sum([cpu.test(x) for x in tests])
+        
 
 
 if __name__ == "__main__":
     inp = load_input()
     if inp != -1:
-        result = cathode_ray_tube(inp)
-    print(result)
+        cathode_ray_tube(inp)
