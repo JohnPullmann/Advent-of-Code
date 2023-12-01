@@ -48,7 +48,7 @@
                 <li><b><a href="https://github.com/JohnPullmann/Advent-of-Code/tree/main/2022/day12">Day 12&nbsp;&nbsp; - **</a></b></li>
                 <li><b><a href="https://github.com/JohnPullmann/Advent-of-Code/tree/main/2022/day13">Day 13&nbsp;&nbsp; - **</a></b></li>
                 <li><b><a href="https://github.com/JohnPullmann/Advent-of-Code/tree/main/2022/day14">Day 14&nbsp;&nbsp; - **</a></b></li>
-                <li><b><a href="https://github.com/JohnPullmann/Advent-of-Code/tree/main/2022/day15">Day 15&nbsp;&nbsp; - **</a></b></li>
+                <li><b><a href="https://github.com/JohnPullmann/Advent-of-Code/tree/main/2022/day15">Day 15&nbsp;&nbsp; - *</a></b></li>
                 <br>
             </p>
         </td>
