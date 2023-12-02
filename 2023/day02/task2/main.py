@@ -1,4 +1,5 @@
 import os
+import math
 
 def load_input() -> list[str]:
     """read input.txt file for task input and return list of lines of input"""
@@ -15,27 +16,16 @@ def load_input() -> list[str]:
 
 
 def day02(inp: list = [str]) -> int:
-    """For each game, find the sum of all game IDs for games that are possible to win. Games that are impossible to win have a cube with a value higher than the maximum value of that color."""
+    """Find minimums for each color and multiply them together. Then return the sum of all of these."""
     result = 0
     for line in inp:
-        impossible = False
-        gameID = int(line.split(":")[0].split(" ")[1])
         sets = {index: {x.strip().split(" ")[1]: int(x.strip().split(" ")[0]) for x in value.strip().split(",")} for index, value in enumerate(line.split(":")[1].split(";")) } 
+        minimums = {"red": 0, "green": 0, "blue": 0}
         for cube_set in sets.values():
-            if "red" in cube_set:
-                if cube_set["red"] > 12:
-                    impossible = True
-                    break
-            if "green" in cube_set:
-                if cube_set["green"] > 13:
-                    impossible = True
-                    break
-            if "blue" in cube_set:
-                if cube_set["blue"] > 14:
-                    impossible = True
-                    break
-        if not impossible:
-            result += gameID
+            for color in cube_set.keys():
+                if cube_set[color] > minimums[color]:
+                    minimums[color] = cube_set[color]
+        result += math.prod(minimums.values())
     return result
 
     
