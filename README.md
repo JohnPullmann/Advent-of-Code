@@ -56,7 +56,7 @@
             <p>
                 <li><b><a href="https://github.com/JohnPullmann/Advent-of-Code/tree/main/2023/day01">Day 1&nbsp;&nbsp; - **</a></b></li>
                 <li><b><a href="https://github.com/JohnPullmann/Advent-of-Code/tree/main/2023/day02">Day 2&nbsp;&nbsp; - **</a></b></li>
-                <li><b><a href="https://github.com/JohnPullmann/Advent-of-Code/tree/main/2023/day03">Day 2&nbsp;&nbsp; - *</a></b></li>
+                <li><b><a href="https://github.com/JohnPullmann/Advent-of-Code/tree/main/2023/day03">Day 2&nbsp;&nbsp; - **</a></b></li>
                 <br>
             </p>
         </td>
