@@ -16,7 +16,7 @@ def load_input() -> list[str]:
 
 
 def day03(inp: list = [str]) -> int:
-    """ Find gears with two adjacent numbers and multiply numbers and sum gears"""
+    """Find gears with two adjacent numbers and multiply numbers and sum gears"""
     matrix = [list(line) for line in inp]
     around = [(-1, -1), (-1, 0), (-1, 1), (0, -1),
               (0, 1), (1, -1), (1, 0), (1, 1)]
@@ -36,6 +36,7 @@ def day03(inp: list = [str]) -> int:
         return [matrix, numbers]
 
 
+    # find gears and assign numbers around that gear to it
     gears = {}
     for y,line in enumerate(matrix):
         for x, c in enumerate(line):
@@ -49,6 +50,8 @@ def day03(inp: list = [str]) -> int:
                             matrix, numbers = find_whole_number(y + dy, x + dx, matrix, [matrix[y + dy][x + dx]])
                             
                             gears[(x,y)].append(int("".join(numbers)))
+    
+    # multiply numbers in gears with two adjacent numbers
     result = 0
     for gear in gears:
         if len(gears[gear]) == 2:
